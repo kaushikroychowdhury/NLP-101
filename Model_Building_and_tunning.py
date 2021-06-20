@@ -1,5 +1,4 @@
 import tensorflow_datasets as tfds
-import itertools
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
@@ -29,7 +28,7 @@ stopwords = ["a", "about", "above", "after", "again", "against", "all", "am", "a
              "yourselves"]
 
 table = str.maketrans('', '', string.punctuation)
-vocab_size = 25000
+vocab_size = 5000
 max_length = 10
 trunc_type='post'
 padding_type='post'
@@ -79,11 +78,11 @@ test_label = np.array(test_label)
 model1 = tf.keras.Sequential([
     tf.keras.layers.Embedding(vocab_size, 8),
     tf.keras.layers.GlobalAveragePooling1D(),
-    tf.keras.layers.Dense(24, activation='relu'),
+    tf.keras.layers.Dense(8, activation='relu'),
     tf.keras.layers.Dense(1, activation='sigmoid')
 ])
-
-model1.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+adam = tf.keras.optimizers.Adam(learning_rate=0.0001)
+model1.compile(optimizer=adam, loss='binary_crossentropy', metrics=['accuracy'])
 
 ### Model Evaluation Graphs
 def plot_graph(history, string):
@@ -94,9 +93,47 @@ def plot_graph(history, string):
     plt.legend([string, 'val_' + string])
     plt.show()
 
-# Fitting
+
 num_epochs = 10
 history1 = model1.fit(training_padded, train_label, epochs=num_epochs, validation_data=(test_padded, test_label), verbose=2)
 
 plot_graph(history1, 'accuracy')
 plot_graph(history1, 'loss')
+
+# Exploring Vocabulary Size
+
+# word_count = tokenizer.word_counts
+# from collections import OrderedDict
+# newlist = (OrderedDict(sorted(word_count.items(), key=lambda t: t[1], reverse=True)))
+# xs=[]
+# ys=[]
+# curr_x = 1
+# for item in newlist:
+#  xs.append(curr_x)
+#  curr_x=curr_x+1
+#  ys.append(newlist[item])
+# plt.plot(xs,ys)
+# plt.show()
+#
+# plt.plot(xs,ys)
+# plt.axis([300,20000,0,400])
+# plt.show()
+
+# Exploring Sentence length
+# xs=[]
+# ys=[]
+# current_item=1
+# for item in train:
+#  xs.append(current_item)
+#  current_item=current_item+1
+#  ys.append(len(item))
+# newys = sorted(ys)
+# plt.plot(xs,newys)
+# plt.show()
+
+# vocab Size = 5000
+# sentence length = max_length = 4000
+# embedding dimension = 4th root of vocab size
+# reducing dense neuron 24 to 8
+# adding droupout               better for bigger architecture
+# l2 regularzation              better for bigger architecture
