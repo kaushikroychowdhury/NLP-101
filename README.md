@@ -14,4 +14,4 @@ Also build an initial model and try to tune its hyperparams for better performan
 
 Embedding Visualization using Embedding Projector.
 
-
+![](/Embedding_Viz/Embedding_Projector.mp4)
