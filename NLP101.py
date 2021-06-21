@@ -159,11 +159,11 @@ plot_graph(history1, 'loss')
 
 # reverse_word_index = dict([(value, key)
 # for (key, value) in word_index.items()])
-#
+
 # e = model1.layers[0]
 # weights = e.get_weights()[0]
 # print(weights.shape)
-#
+
 # import io
 # out_v = io.open('vecs.tsv', 'w', encoding='utf-8')
 # out_m = io.open('meta.tsv', 'w', encoding='utf-8')
