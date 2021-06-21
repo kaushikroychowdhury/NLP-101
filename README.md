@@ -12,6 +12,6 @@ Also build an initial model and try to tune its hyperparams for better performan
 ### Loss
 ![Loss](/Model_Evaluation_Viz/loss.png)
 
-Embedding Visualization using Embedding Projector.
+## Embedding Visualization using Embedding Projector.
 
-![](/Embedding_Viz/Embedding_Projector.mp4)
+![embedding](/Embedding_Viz/Embedding_Projector.png)
