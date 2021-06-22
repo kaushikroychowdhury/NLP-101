@@ -4,6 +4,24 @@ Learning and exploring NLP ( Natural Language Processing).
 I have applied various text preprocessing methods like TOKENIZATION , SEQUENCING and PADDING.
 Also build an initial model and try to tune its hyperparams for better performance.
 
+## Reducing Overfitting in Language Models
+1. Adjusting the Learning Rate
+2. Exploring Vocabulary size
+3. Exploring Sentence length
+4. Exploring Embedding Dimension (4th root of Vocabulary Size)
+5. Exploring the Model Architechture
+    a. Reducing number of Neurons for the Dense Layer (approximatly close to embedding Dimension)
+    b. Using Droupout           (Only Works for Complex Architecture)
+    c. Using Regularization     (Only Works for Complex Architecture)
+
+For this model, hyperparams are as follows :
+```python
+learning_rate=0.0001        # For ADAM Optimizer
+vocab_size = 5000
+max_length = 4000
+Embedding_Dimension = 8
+```
+
 ## Model Architecture
 ```python
 model1 = tf.keras.Sequential([
